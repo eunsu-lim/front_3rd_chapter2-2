@@ -1,5 +1,6 @@
 import { CartItem, Coupon, Product } from "../../types.ts";
 import { useCart } from "../hooks";
+import { getRemainingStock } from "../hooks/utils/cartUtils.ts";
 
 interface Props {
   products: Product[];
@@ -15,7 +16,6 @@ export const CartPage = ({ products, coupons }: Props) => {
     applyCoupon,
     calculateTotal,
     selectedCoupon,
-    getRemainingStock,
   } = useCart();
 
   const getMaxDiscount = (discounts: { quantity: number; rate: number }[]) => {
@@ -45,7 +45,7 @@ export const CartPage = ({ products, coupons }: Props) => {
           <h2 className="text-2xl font-semibold mb-4">상품 목록</h2>
           <div className="space-y-2">
             {products.map((product) => {
-              const remainingStock = getRemainingStock(product);
+              const remainingStock = getRemainingStock(product, cart);
               return (
                 <div
                   key={product.id}
