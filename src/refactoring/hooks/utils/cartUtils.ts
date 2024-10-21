@@ -11,10 +11,6 @@ export const getMaxApplicableDiscount = (item: CartItem) => {
   const { product, quantity } = item;
   const { discounts } = product;
 
-  if (!Array.isArray(discounts) || discounts.length === 0) {
-    return 0;
-  }
-
   const maxDiscount = discounts.reduce((maxDiscount, discount) => {
     return quantity >= discount.quantity
       ? Math.max(maxDiscount, discount.rate)
