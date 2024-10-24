@@ -12,11 +12,8 @@ export const useProductList = (
   onProductUpdate: (product: Product) => void
 ) => {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const {
-    inputState: newDiscount,
-    onChange: handleDiscountChange,
-    onReset: resetNewDiscount,
-  } = useForm<Discount>(initialNewDiscount);
+  const { inputState: newDiscount, onChange: handleDiscountChange } =
+    useForm<Discount>(initialNewDiscount);
 
   const handleEditProduct = (product: Product) => {
     setEditingProduct({ ...product });
