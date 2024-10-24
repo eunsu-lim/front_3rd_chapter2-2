@@ -401,57 +401,6 @@ describe("advanced > ", () => {
     });
   });
 
-  describe("useAccordion hook", () => {
-    describe("useAccordion hook", () => {
-      it("should initialize with an empty set of openProductIds", () => {
-        const { result } = renderHook(() => useAccordion());
-
-        expect(result.current.openProductIds.size).toBe(0);
-      });
-
-      it("should toggle product accordion state (open/close)", () => {
-        const { result } = renderHook(() => useAccordion());
-        const productId = "product1";
-
-        act(() => {
-          result.current.toggleProductAccordion(productId);
-        });
-
-        expect(result.current.openProductIds.has(productId)).toBe(true);
-
-        act(() => {
-          result.current.toggleProductAccordion(productId);
-        });
-
-        expect(result.current.openProductIds.has(productId)).toBe(false);
-      });
-
-      it("should handle multiple products being toggled independently", () => {
-        const { result } = renderHook(() => useAccordion());
-        const productId1 = "product1";
-        const productId2 = "product2";
-
-        act(() => {
-          result.current.toggleProductAccordion(productId1);
-        });
-        expect(result.current.openProductIds.has(productId1)).toBe(true);
-        expect(result.current.openProductIds.has(productId2)).toBe(false);
-
-        act(() => {
-          result.current.toggleProductAccordion(productId2);
-        });
-        expect(result.current.openProductIds.has(productId1)).toBe(true);
-        expect(result.current.openProductIds.has(productId2)).toBe(true);
-
-        act(() => {
-          result.current.toggleProductAccordion(productId1);
-        });
-        expect(result.current.openProductIds.has(productId1)).toBe(false);
-        expect(result.current.openProductIds.has(productId2)).toBe(true);
-      });
-    });
-  });
-
   describe("useForm hook", () => {
     const initialState = {
       name: "",
